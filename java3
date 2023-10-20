@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class PangramCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine().toLowerCase();
+
+        boolean isPangram = isPangram(sentence);
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean isPangram(String s) {
+        boolean[] alphabet = new boolean[26];
+        int totalLetters = 0;
+
+        for (char c : s.toCharArray()) {
+            if (Character.isLetter(c)) {
+                int index = c - 'a';
+                if (!alphabet[index]) {
+                    alphabet[index] = true;
+                    totalLetters++;
+                }
+            }
+        }
+
+        return totalLetters == 26;
+    }
+}
