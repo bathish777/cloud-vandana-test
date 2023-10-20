@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class RomanToInteger {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a Roman Numeral: ");
+        String romanNumeral = scanner.nextLine().toUpperCase();
+
+        int result = romanToInteger(romanNumeral);
+        System.out.println("Equivalent Integer: " + result);
+    }
+
+    public static int romanToInteger(String s) {
+        // Create a mapping of Roman numerals to integers
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        int result = 0;
+        int index = 0;
+
+        for (int i = 0; i < symbols.length; i++) {
+            while (s.startsWith(symbols[i], index)) {
+                result += values[i];
+                index += symbols[i].length();
+            }
+        }
+
+        return result;
+    }
+}
